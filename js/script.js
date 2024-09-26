@@ -161,5 +161,18 @@ document.addEventListener('keypress', (event) => {
     if (audioSrc) playAudio(audioSrc);
 });
 
-// Call the loadAudios function when the page is loaded
+// Add event listener for 'Switch to Pad 1' and 'Switch to Pad 2'
+document.querySelectorAll('.pad-change').forEach((padChangeBtn, index) => {
+    padChangeBtn.addEventListener('click', () => {
+        if (index === 0) {
+            // This is the first button (Pad 1)
+            switchPad(1);
+        } else {
+            // This is the second button (Pad 2)
+            switchPad(2);
+        }
+    });
+});
+
+// Call the loadAudios function 
 window.onload = loadAudios;
