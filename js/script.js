@@ -6,6 +6,9 @@ let audios = {
 // Track the current active pad (1 or 2)
 let currentPad = 1;
 
+const keysPad1 = ['q', 'a', 'z', 'w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v'];
+const keysPad2 = ['p', 'l', ',', 'o', 'k', 'm', 'i', 'j', 'n', 'u', 'h', 'b'];
+
 // Load audios from JSON file
 async function loadAudios() {
     try {
@@ -30,25 +33,25 @@ function displayAudios() {
     pad1Container.innerHTML = '';
     pad2Container.innerHTML = '';
 
-    // Loop through pad1 audios and create buttons
-    audios.pad1.forEach((audioSrc, index) => {
+    // Use a loop to create buttons for pad1
+    for (let i = 0; i < audios.pad1.length; i++) {
         const button = document.createElement('div');
         button.classList.add('btn');
-        button.id = `pad1-btn-${index}`;
-        button.innerText = `Pad 1 - ${index + 1}`;
-        button.addEventListener('click', () => playAudio(audioSrc));
+        button.id = `pad1-btn-${i}`;
+        button.innerText = `Pad 1 - ${keysPad1[i]}`;
+        button.addEventListener('click', () => playAudio(audios.pad1[i]));
         pad1Container.appendChild(button);
-    });
+    }
 
-    // Loop through pad2 audios and create buttons
-    audios.pad2.forEach((audioSrc, index) => {
+    // Use a loop to create buttons for pad2
+    for (let i = 0; i < audios.pad2.length; i++) {
         const button = document.createElement('div');
         button.classList.add('btn');
-        button.id = `pad2-btn-${index}`;
-        button.innerText = `Pad 2 - ${index + 13}`;
-        button.addEventListener('click', () => playAudio(audioSrc));
+        button.id = `pad2-btn-${i}`;
+        button.innerText = `Pad 2 - ${keysPad2[i]}`;
+        button.addEventListener('click', () => playAudio(audios.pad2[i]));
         pad2Container.appendChild(button);
-    });
+    }
 
     // Initially hide pad2, show pad1
     switchPad(1);
@@ -67,6 +70,15 @@ function switchPad(padNumber) {
     }
 }
 
+// Function to toggle between pads when the button is clicked
+function togglePad() {
+    if (currentPad === 1) {
+        switchPad(2); // Switch to Pad 2
+    } else {
+        switchPad(1); // Switch to Pad 1
+    }
+}
+
 // Play audio function
 function playAudio(audioSrc) {
     const audioPlayer = document.getElementById('audio-player');
@@ -74,101 +86,36 @@ function playAudio(audioSrc) {
     audioPlayer.play();
 }
 
-// Set up keypress event listener using a switch statement
+// Set up keypress event listener using a loop for efficiency
 document.addEventListener('keypress', (event) => {
-    let audioSrc;
-    switch (event.key) {
-        case 'q': 
-            if (currentPad === 1) audioSrc = audios.pad1[0];
-            break;
-        case 'a': 
-            if (currentPad === 1) audioSrc = audios.pad1[1];
-            break;
-        case 'z': 
-            if (currentPad === 1) audioSrc = audios.pad1[2];
-            break;
-        case 'w': 
-            if (currentPad === 1) audioSrc = audios.pad1[3];
-            break;
-        case 's': 
-            if (currentPad === 1) audioSrc = audios.pad1[4];
-            break;
-        case 'x': 
-            if (currentPad === 1) audioSrc = audios.pad1[5];
-            break;
-        case 'e': 
-            if (currentPad === 1) audioSrc = audios.pad1[6];
-            break;
-        case 'd': 
-            if (currentPad === 1) audioSrc = audios.pad1[7];
-            break;
-        case 'c': 
-            if (currentPad === 1) audioSrc = audios.pad1[8];
-            break;
-        case 'r': 
-            if (currentPad === 1) audioSrc = audios.pad1[9];
-            break;
-        case 'f': 
-            if (currentPad === 1) audioSrc = audios.pad1[10];
-            break;
-        case 'v': 
-            if (currentPad === 1) audioSrc = audios.pad1[11];
-            break;
-            
-        case 'p': 
-            if (currentPad === 2) audioSrc = audios.pad2[0];
-            break;
-        case 'l': 
-            if (currentPad === 2) audioSrc = audios.pad2[1];
-            break;
-        case ',': 
-            if (currentPad === 2) audioSrc = audios.pad2[2];
-            break;
-        case 'o': 
-            if (currentPad === 2) audioSrc = audios.pad2[3];
-            break;
-        case 'k': 
-            if (currentPad === 2) audioSrc = audios.pad2[4];
-            break;
-        case 'm': 
-            if (currentPad === 2) audioSrc = audios.pad2[5];
-            break;
-        case 'i': 
-            if (currentPad === 2) audioSrc = audios.pad2[6];
-            break;
-        case 'j': 
-            if (currentPad === 2) audioSrc = audios.pad2[7];
-            break;
-        case 'n': 
-            if (currentPad === 2) audioSrc = audios.pad2[8];
-            break;
-        case 'u': 
-            if (currentPad === 2) audioSrc = audios.pad2[9];
-            break;
-        case 'h': 
-            if (currentPad === 2) audioSrc = audios.pad2[10];
-            break;
-        case 'b': 
-            if (currentPad === 2) audioSrc = audios.pad2[11];
-            break;       
+    let audioSrc = null;
+    const key = event.key;
 
-
-        default:
-            console.log("Wrong Key");
-            return;
+    if (currentPad === 1) {
+        const index = keysPad1.indexOf(key);
+        if (index !== -1) {
+            audioSrc = audios.pad1[index];
+        }
+    } else if (currentPad === 2) {
+        const index = keysPad2.indexOf(key);
+        if (index !== -1) {
+            audioSrc = audios.pad2[index];
+        }
     }
-    
-    if (audioSrc) playAudio(audioSrc);
+
+    if (audioSrc) {
+        playAudio(audioSrc);
+    } else {
+        console.log("Wrong Key");
+    }
 });
 
 // Add event listener for 'Switch to Pad 1' and 'Switch to Pad 2'
 document.querySelectorAll('.pad-change').forEach((padChangeBtn, index) => {
     padChangeBtn.addEventListener('click', () => {
         if (index === 0) {
-            // This is the first button (Pad 1)
             switchPad(1);
         } else {
-            // This is the second button (Pad 2)
             switchPad(2);
         }
     });
