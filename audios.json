@@ -1,0 +1,31 @@
+{
+	"pad1": [
+	  "audio/aaa.mp3",
+	  "audio/bbb.mp3",
+	  "audio/ccc.mp3",
+	  "audio/ddd.mp3",
+	  "audio/eee.mp3",
+	  "audio/fff.mp3",
+	  "audio/ggg.mp3",
+	  "audio/hhh.mp3",
+	  "audio/jjj.mp3",
+	  "audio/kkk.mp3",
+	  "audio/lll.mp3",
+	  "audio/mmm.mp3"	  
+	],
+
+	"pad2": [
+	  "audio/sound13.mp3",
+	  "audio/sound14.mp3",
+	  "audio/sound15.mp3",
+	  "audio/sound16.mp3",
+	  "audio/sound17.mp3",
+	  "audio/sound18.mp3",
+	  "audio/sound19.mp3",
+	  "audio/sound20.mp3",
+	  "audio/sound21.mp3",
+	  "audio/sound22.mp3",
+	  "audio/sound23.mp3",
+	  "audio/sound24.mp3"
+	]
+  }
