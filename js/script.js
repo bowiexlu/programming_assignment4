@@ -57,8 +57,14 @@ function displayAudios() {
 // Switch between pads (Pad 1 and Pad 2)
 function switchPad(padNumber) {
     currentPad = padNumber;
-    document.getElementById('pad1').style.display = padNumber === 1 ? 'flex' : 'none';
-    document.getElementById('pad2').style.display = padNumber === 2 ? 'flex' : 'none';
+    
+    if (padNumber === 1) {
+        document.getElementById('pad1').style.display = 'flex';
+        document.getElementById('pad2').style.display = 'none';
+    } else {
+        document.getElementById('pad1').style.display = 'none';
+        document.getElementById('pad2').style.display = 'flex';
+    }
 }
 
 // Play audio function
@@ -72,27 +78,83 @@ function playAudio(audioSrc) {
 document.addEventListener('keypress', (event) => {
     let audioSrc;
     switch (event.key) {
-        case 'q': // Map 'q' key to first sound in pad1
+        case 'q': 
             if (currentPad === 1) audioSrc = audios.pad1[0];
             break;
-        case 'w': // Map 'w' key to second sound in pad1
+        case 'a': 
             if (currentPad === 1) audioSrc = audios.pad1[1];
             break;
-        case 'e': // Map 'e' key to third sound in pad1
+        case 'z': 
             if (currentPad === 1) audioSrc = audios.pad1[2];
             break;
-        case 'a': // Map 'a' key to first sound in pad2
+        case 'w': 
+            if (currentPad === 1) audioSrc = audios.pad1[3];
+            break;
+        case 's': 
+            if (currentPad === 1) audioSrc = audios.pad1[4];
+            break;
+        case 'x': 
+            if (currentPad === 1) audioSrc = audios.pad1[5];
+            break;
+        case 'e': 
+            if (currentPad === 1) audioSrc = audios.pad1[6];
+            break;
+        case 'd': 
+            if (currentPad === 1) audioSrc = audios.pad1[7];
+            break;
+        case 'c': 
+            if (currentPad === 1) audioSrc = audios.pad1[8];
+            break;
+        case 'r': 
+            if (currentPad === 1) audioSrc = audios.pad1[9];
+            break;
+        case 'f': 
+            if (currentPad === 1) audioSrc = audios.pad1[10];
+            break;
+        case 'v': 
+            if (currentPad === 1) audioSrc = audios.pad1[11];
+            break;
+            
+        case 'p': 
             if (currentPad === 2) audioSrc = audios.pad2[0];
             break;
-        case 's': // Map 's' key to second sound in pad2
+        case 'l': 
             if (currentPad === 2) audioSrc = audios.pad2[1];
             break;
-        case 'd': // Map 'd' key to third sound in pad2
+        case ',': 
             if (currentPad === 2) audioSrc = audios.pad2[2];
             break;
-        // Add more key mappings for remaining buttons...
+        case 'o': 
+            if (currentPad === 2) audioSrc = audios.pad2[3];
+            break;
+        case 'k': 
+            if (currentPad === 2) audioSrc = audios.pad2[4];
+            break;
+        case 'm': 
+            if (currentPad === 2) audioSrc = audios.pad2[5];
+            break;
+        case 'i': 
+            if (currentPad === 2) audioSrc = audios.pad2[6];
+            break;
+        case 'j': 
+            if (currentPad === 2) audioSrc = audios.pad2[7];
+            break;
+        case 'n': 
+            if (currentPad === 2) audioSrc = audios.pad2[8];
+            break;
+        case 'u': 
+            if (currentPad === 2) audioSrc = audios.pad2[9];
+            break;
+        case 'h': 
+            if (currentPad === 2) audioSrc = audios.pad2[10];
+            break;
+        case 'b': 
+            if (currentPad === 2) audioSrc = audios.pad2[11];
+            break;       
+
+
         default:
-            console.log("Key not mapped to any sound");
+            console.log("Wrong Key");
             return;
     }
     
